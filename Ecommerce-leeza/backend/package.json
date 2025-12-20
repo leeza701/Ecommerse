@@ -4,10 +4,9 @@
   "description": "",
   "main": "backend/server.js",
   "scripts": {
-		"dev": "nodemon backend/server.js",
-		"start": "node backend/server.js",
-		"build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
-	},
+    "start": "PORT=5001 node server.js",
+    "dev": "PORT=5001 nodemon server.js"
+  },
   "keywords": [],
   "author": "",
   "type": "module",
@@ -26,5 +25,8 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.11"
+  },
+  "directories": {
+    "lib": "lib"
   }
 }
