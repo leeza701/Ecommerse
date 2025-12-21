@@ -9,9 +9,28 @@ const generateTokens=(userId)=>{
   return {accessToken,refreshToken};
 };
 
-const storeRefreshToken=async(userId,refreshToken)=>{
-  await redis.set(`refresh_token:${userId}`,refreshToken,"EX",7*24*60*60);
-}
+// const storeRefreshToken=async(userId,refreshToken)=>{
+//   await redis.set(`refresh_token:${userId}`,refreshToken,"EX",7*24*60*60);
+// }
+
+export const storeRefreshToken = async (userId, refreshToken) => {
+  if (!redis) {
+    console.log("Redis not available, skipping refresh token storage");
+    return;
+  }
+
+  try {
+    if (!redis) return;
+    await redis.set(
+      `refresh_token:${userId}`,
+      refreshToken,
+      "EX",
+      7 * 24 * 60 * 60 
+    );
+  } catch (error) {
+    console.error("Error storing refresh token in Redis:", error.message);
+  }
+};
 
 const setCookies=(res,accessToken,refreshToken)=>{
   const isProduction = process.env.NODE_ENV === "production";
