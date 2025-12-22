@@ -1,9 +1,13 @@
 import axios from "axios";
 
-const axiosInstance=axios.create({
-    //baseURL:import.meta.mode === "development" ? "http://localhost:5000/api" : "/api",
-    baseURL: "http://localhost:5001/api",
-    withCredentials:true,
-})
+// Use env var if provided, otherwise fall back to Render backend URL
+const baseURL =
+	import.meta.env.VITE_API_URL ||
+	"https://ecommerse-fullstack-backend.onrender.com/api";
+
+const axiosInstance = axios.create({
+	baseURL,
+	withCredentials: true,
+});
 
 export default axiosInstance;
