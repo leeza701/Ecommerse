@@ -139,7 +139,7 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import axios from "../config/axios";
+import axios from "../lib/axios";
 import { Users, Package, ShoppingCart, DollarSign } from "lucide-react";
 import {
   LineChart,
@@ -252,9 +252,7 @@ const AnalyticsTab = () => {
                   name === "Revenue" ? [`₹${value}`, name] : [value, name]
                 }
               />
-
               <Legend />
-
               <Line
                 yAxisId="left"
                 type="monotone"
